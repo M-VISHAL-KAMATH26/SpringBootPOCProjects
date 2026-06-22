@@ -24,7 +24,7 @@ public class RoomController {
     @PostMapping("/rooms")
     public ResponseEntity<String> addRoom(@RequestBody  Room room){
         service.addRoom(room);
-        return ResponseEntity.ok("sucessfully added rooom");
+        return ResponseEntity.ok("successfully added r oom");
     }
 
     //get all the rooms

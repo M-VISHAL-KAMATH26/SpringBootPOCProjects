@@ -1,5 +1,7 @@
 package com.Vishal.HotelManagement.service;
 
+import com.Vishal.HotelManagement.exception.NoRoomsAvailableExcption;
+import com.Vishal.HotelManagement.exception.RoomNotFoundException;
 import com.Vishal.HotelManagement.model.Room;
 import com.Vishal.HotelManagement.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ public class RoomService {
 
     //for getting room by id
     public Room getRoomById(int roomId){
-        return roomrepo.findById(roomId).orElse(new Room());
+        return roomrepo.findById(roomId).orElseThrow(()-> new RoomNotFoundException(roomId));
     }
 
     //for updating the room
@@ -33,11 +35,17 @@ public class RoomService {
     }
 
     public void deleteRoomById(int roomId){
+        if(!roomrepo.existsById(roomId)){ throw new RoomNotFoundException(roomId);}
         roomrepo.deleteById(roomId);
     }
 
     public List<Room> getAvailableRoom(){
-       return roomrepo.findByAvailableTrue();
+       List<Room> rooms= roomrepo.findByAvailableTrue();
+       if(rooms.isEmpty()){
+           throw  new NoRoomsAvailableExcption();
+       }
+        return rooms;
+
     }
 
     public List<Room> getRoomByPrice( double price){

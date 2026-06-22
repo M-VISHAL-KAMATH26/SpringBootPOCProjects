@@ -1,15 +1,36 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.util.Stack;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+class ValidParenthesis{
+    public boolean isValidParenthesis(String s){
+        char[] data=s.toCharArray();
+        Stack<Character> stack=new Stack<>();
+        for(char c:data){
+            if(c=='('||c=='{'||c=='['){
+                stack.push(c);
+            }
+            else{
+                if(stack.isEmpty()){
+                    return false;
+                }
+                char popped=stack.pop();
+                if(!((popped=='('&&c==')')||(popped=='{'&&c=='}')||(popped=='['&&c==']'))){
+                    return false;
+                }
+            }
         }
+        return stack.isEmpty();
+    }
+}
+
+public class Main{
+    public static void main(String[] args) {
+        ValidParenthesis vp=new ValidParenthesis();
+        String s="({[]})";
+        boolean res=vp.isValidParenthesis(s);
+if(res){
+    System.out.println("valid");
+}else{
+    System.out.println("invalid");
+}
     }
 }
