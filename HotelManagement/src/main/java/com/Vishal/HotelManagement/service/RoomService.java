@@ -21,7 +21,10 @@ public class RoomService {
     }
     //for fetching all rooms
     public List<Room> getRooms(){
+        List<Room> rooms=roomrepo.findAll();
+        if(rooms.isEmpty()){throw  new NoRoomsAvailableExcption();}
         return roomrepo.findAll();
+
     }
 
     //for getting room by id

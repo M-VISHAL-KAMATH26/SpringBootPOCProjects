@@ -16,4 +16,10 @@ public class GlobalExceptionHandler {
         ErrorResponse error=new ErrorResponse(ex.getMessage(), LocalDateTime.now(),404);
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(NoRoomsAvailableExcption.class)
+    public ResponseEntity<ErrorResponse> handleRoomsNotAvailable(NoRoomsAvailableExcption ex){
+        ErrorResponse error=new ErrorResponse(ex.getMessage(),LocalDateTime.now(),404);
+        return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
+    }
 }
