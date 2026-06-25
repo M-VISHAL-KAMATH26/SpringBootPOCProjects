@@ -37,7 +37,7 @@ public class JobController {
     }
 
     //update the job
-    @PutMapping("/api/jobs/{id}")
+    @PutMapping("/api/jobs/{jobId}")
     public Job updateJob(@PathVariable long jobId,@RequestBody Job job){
         return jobService.updateJob(jobId,job);
     }

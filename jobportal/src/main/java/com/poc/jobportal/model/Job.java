@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long jobId;
+    private Long jobId;
 
     @Column(nullable = false)
     private String title;
