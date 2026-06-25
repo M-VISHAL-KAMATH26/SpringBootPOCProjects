@@ -2,6 +2,7 @@ package com.poc.jobportal.service;
 
 
 import com.poc.jobportal.model.Job;
+import com.poc.jobportal.model.JobStatus;
 import com.poc.jobportal.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,22 @@ public class JobService {
 
     public void deleteJob(long jobId){
         jobrepo.deleteById(jobId);
+    }
+
+    //Derived Queries example
+    public List<Job> findJobByStatus(JobStatus status){
+        return jobrepo.findByStatus(status);
+    }
+
+    public List<Job> findJobBySalaryGreaterThan(Double salary){
+        return jobrepo.findBySalaryGreaterThan(salary);
+    }
+
+    public List<Job> findJobByTitleContaining(String title){
+        return  jobrepo.findByTitleContaining(title);
+    }
+
+    public List<Job> findTopThreeJob(){
+        return jobrepo.findTop3ByOrderBySalaryDesc();
     }
 }

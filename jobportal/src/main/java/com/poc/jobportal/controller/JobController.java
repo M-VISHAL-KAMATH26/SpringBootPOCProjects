@@ -2,6 +2,7 @@ package com.poc.jobportal.controller;
 
 
 import com.poc.jobportal.model.Job;
+import com.poc.jobportal.model.JobStatus;
 import com.poc.jobportal.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,30 @@ public class JobController {
     @DeleteMapping("/api/jobs/{jobId}")
     public void deleteJob(@PathVariable long jobId){
         jobService.deleteJob(jobId);
+    }
+
+    //get job by status
+    @GetMapping("/api/jobs/status/{status}")
+    public List<Job> getJobByStatus(@PathVariable JobStatus status){
+        return jobService.findJobByStatus(status);
+    }
+
+    //get job greter then specified salary
+    @GetMapping("/api/jobs/salary/{salary}")
+    public List<Job> getJobBySalary(@PathVariable  Double salary){
+        return jobService.findJobBySalaryGreaterThan(salary);
+    }
+
+    //get job by title
+    @GetMapping("/api/jobs/search/{title}")
+    public List<Job> getJobByTitle(@PathVariable String title){
+        return jobService.findJobByTitleContaining(title);
+    }
+
+    //get top 3 jobs
+    @GetMapping("/api/jobs/top3")
+    public List<Job> getTopThreeJobs(){
+        return jobService.findTopThreeJob();
     }
 
 }

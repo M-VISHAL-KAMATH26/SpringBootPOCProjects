@@ -27,7 +27,7 @@ public class Job {
     private  String location;
 
     @Column(nullable = false)
-    private double salary;
+    private Double salary;
 
     @Enumerated(EnumType.STRING)
     private JobStatus status;
