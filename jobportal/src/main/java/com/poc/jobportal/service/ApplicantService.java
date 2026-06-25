@@ -37,4 +37,19 @@ public class ApplicantService {
     public void deleteApplicant(long applicantId){
         applicantRepo.deleteById(applicantId);
     }
+
+
+    //java persistence query language usage
+
+    public List<Applicant> findBySkill(String keyword){
+        return applicantRepo.findApplicanyContainingSkill(keyword);
+    }
+    public List<Applicant> findByName(String keyword){
+        return applicantRepo.findApplicantContainsName(keyword);
+    }
+    public int getCount(){
+        return applicantRepo.countApplicant();
+    }
+
+
 }

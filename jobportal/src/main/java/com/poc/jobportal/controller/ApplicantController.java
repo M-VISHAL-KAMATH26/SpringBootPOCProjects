@@ -45,4 +45,22 @@ public class ApplicantController {
         return "deleted successfully";
     }
 
+    //keyword mathcing in the skills
+    @GetMapping("/skill/{keyword}")
+    public List<Applicant> getMatchingSkill(@PathVariable String keyword){
+        return applicantService.findBySkill(keyword);
+    }
+
+    //keyword matching in the name
+    @GetMapping("/search/name/{keyword}")
+    public List<Applicant> getMatchingName(@PathVariable String keyword){
+        return applicantService.findByName(keyword);
+    }
+
+    //get total applicants count
+    @GetMapping("/count")
+    public int getCount(){
+        return applicantService.getCount();
+    }
+
 }
