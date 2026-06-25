@@ -1,6 +1,7 @@
 package com.poc.jobportal.service;
 
 
+import com.poc.jobportal.exception.JobNotFoundException;
 import com.poc.jobportal.model.Job;
 import com.poc.jobportal.model.JobStatus;
 import com.poc.jobportal.repository.JobRepository;
@@ -24,12 +25,13 @@ public class JobService {
     }
 
     public Job getJobById(long jobId){
-        return jobrepo.findById(jobId).orElse(new Job());
+
+        return jobrepo.findById(jobId).orElseThrow(()->new JobNotFoundException(jobId));
     }
 
         public Job updateJob(long jobId, Job job) {
             Job existing = jobrepo.findById(jobId)
-                    .orElseThrow(() -> new RuntimeException("Job not found"));
+                    .orElseThrow(()->new JobNotFoundException(jobId));
             existing.setTitle(job.getTitle());
             existing.setCompany(job.getCompany());
             existing.setLocation(job.getLocation());

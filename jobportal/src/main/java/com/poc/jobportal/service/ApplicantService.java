@@ -1,6 +1,7 @@
 package com.poc.jobportal.service;
 
 
+import com.poc.jobportal.exception.ApplicantNotFound;
 import com.poc.jobportal.model.Applicant;
 import com.poc.jobportal.repository.ApplicantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,11 @@ public class ApplicantService {
     }
 
     public Applicant getApplicantById(long applicantId){
-        return applicantRepo.findById(applicantId).orElse(new Applicant());
+        return applicantRepo.findById(applicantId).orElseThrow(()->new ApplicantNotFound(applicantId));
     }
 
     public Applicant updateApplicant(long applicantId,Applicant applicant){
-        Applicant existing=applicantRepo.findById(applicantId).orElseThrow(()->new RuntimeException("applicant not found"));
+        Applicant existing=applicantRepo.findById(applicantId).orElseThrow(()->new ApplicantNotFound(applicantId));
         existing.setName(applicant.getName());
         existing.setSkills(applicant.getSkills());
         existing.setEmail(applicant.getEmail());
