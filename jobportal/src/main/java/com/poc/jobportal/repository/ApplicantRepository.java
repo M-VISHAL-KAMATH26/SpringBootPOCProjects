@@ -31,6 +31,4 @@ public interface ApplicantRepository extends JpaRepository<Applicant,Long> {
     @Query("SELECT a from Applicant a ORDER BY a.name ASC ")
     List<Applicant> orderByName();
 
-
-
 }

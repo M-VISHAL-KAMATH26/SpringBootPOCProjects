@@ -63,4 +63,6 @@ public class ApplicantController {
         return applicantService.getCount();
     }
 
+
+
 }
