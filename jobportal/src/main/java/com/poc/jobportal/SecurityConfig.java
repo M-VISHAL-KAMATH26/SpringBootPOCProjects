@@ -39,7 +39,7 @@ private CustomUserDetailsService customUserDetailsService;
         http
                 .csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/").permitAll()
                         .requestMatchers("/api/jobs/**").hasRole("ADMIN")
                         .requestMatchers("/api/applicants/**").hasRole("APPLICANT")
                         .anyRequest().authenticated()
