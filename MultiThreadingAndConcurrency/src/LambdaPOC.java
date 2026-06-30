@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -68,5 +69,8 @@ f.printing();
         System.out.println("-----supplier-----");
         Book defaultBook = getDefaultBook(() -> new Book("Unknown Book", "Unknown Author", 0));
         System.out.println(defaultBook.title + " - " + defaultBook.pages + " pages");
+
+        System.out.println("-----stream comparator-----");
+        bookList.stream().sorted(Comparator.comparingInt((Book b)->b.pages).reversed()).map(b->b.title).forEach(System.out::println);
     }
 }
