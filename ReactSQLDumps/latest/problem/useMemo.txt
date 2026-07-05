@@ -1,0 +1,8 @@
+Problem: Expensive Factorial Calculator
+Requirements
+
+Create a React component with:
+
+An input for a number.
+An input for a name.
+Display the factorial of the number.

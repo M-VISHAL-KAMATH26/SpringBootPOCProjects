@@ -1,0 +1,14 @@
+🟢 Problem: Counter with Increment, Decrement, and Reset
+Requirements
+
+Build a React component that:
+
+Displays the current count (initial value = 0).
+Has three buttons:
+➕ Increment
+➖ Decrement
+🔄 Reset
+Clicking:
+Increment increases the count by 1.
+Decrement decreases the count by 1.
+Reset sets the count back to 0.

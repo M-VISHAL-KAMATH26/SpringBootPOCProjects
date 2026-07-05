@@ -1,0 +1,8 @@
+Problem 1: Page Title Updater
+Requirements
+
+Create a component with:
+
+A counter initialized to 0
+An Increment button
+Whenever the count changes, update the browser tab title.

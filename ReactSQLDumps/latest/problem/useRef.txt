@@ -1,0 +1,5 @@
+Requirements
+Create an input field.
+Create a button.
+When the button is clicked, the cursor should automatically move into the input field.
+Use only useRef (don't use document.getElementById() or querySelector()).
