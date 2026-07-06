@@ -3,7 +3,8 @@ import Counter from './Components/Counter'
 import Timer from './Components/Timer'
 import EnterName from './Components/EnterName'
 import FactorialCalculator from './Components/FactorialCalculator'
-
+import StudentCardCollection from './Components/StudentCardCollection'
+import FormDemo from './Components/FormDemo'
 const App = () => {
   return (
     <div>
@@ -12,6 +13,8 @@ const App = () => {
       <Timer/>
       <EnterName/>
       <FactorialCalculator/>
+      <StudentCardCollection/>
+      <FormDemo/>
     </div>
   )
 }

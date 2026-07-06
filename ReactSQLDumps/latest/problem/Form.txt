@@ -1,0 +1,12 @@
+Requirements:
+
+username state
+password state
+A <form>
+Username input
+Password input
+Login button
+onSubmit
+preventDefault()
+Validate that both fields are not empty
+If valid, console.log(username, password)
