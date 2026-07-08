@@ -15,7 +15,7 @@ public class BookService {
     BookRepository bookRepo;
 
     public Book getBookById(Long bookId){
-        return bookRepo.findById(bookId).orElseThrow(()->new ResourceNotFoundException("book not found with id " +bookIdgit add/* giit*/));
+        return bookRepo.findById(bookId).orElseThrow(()->new ResourceNotFoundException("book not found with id " +bookId));
     }
 
     public List<Book> getBooks(){

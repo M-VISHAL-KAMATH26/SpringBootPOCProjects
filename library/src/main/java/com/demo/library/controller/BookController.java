@@ -2,6 +2,7 @@ package com.demo.library.controller;
 
 import com.demo.library.model.Book;
 import com.demo.library.service.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class BookController {
     }
 
     @GetMapping("/books/{bookId}")
-    public Book getBookById(@PathVariable Long bookId ){
+    public Book getBookById(@Valid @PathVariable Long bookId ){
         return bookService.getBookById(bookId);
     }
 
