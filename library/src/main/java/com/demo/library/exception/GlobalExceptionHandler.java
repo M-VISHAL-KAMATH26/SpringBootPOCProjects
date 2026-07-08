@@ -39,4 +39,34 @@ public class GlobalExceptionHandler {
         );
         return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(BookAlreadyBorrowedExeption.class)
+    public ResponseEntity<ErrorResponse> handleBookAlreadyBorrowed(
+            BookAlreadyBorrowedExeption ex, WebRequest request) {
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.CONFLICT.value(),
+                "Conflict",
+                ex.getMessage(),
+                request.getDescription(false)
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleGenericException(
+            Exception ex, WebRequest request) {
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                "Internal Server Error",
+                "Something went wrong. Please try again later.",
+                request.getDescription(false)
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

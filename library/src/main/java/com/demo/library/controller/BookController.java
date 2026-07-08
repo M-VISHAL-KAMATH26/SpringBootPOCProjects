@@ -21,12 +21,18 @@ public class BookController {
     }
 
     @GetMapping("/books/{bookId}")
-    public Book getBookById(@Valid @PathVariable Long bookId ){
+    public Book getBookById( @PathVariable Long bookId ){
         return bookService.getBookById(bookId);
     }
 
     @PostMapping("/books")
-    public void postBooks(@RequestBody Book book){
+    public void postBooks(@Valid @RequestBody Book book){
         bookService.postBook(book);
     }
+    @PostMapping("/books/{bookId}/borrow")
+    public void borrowBook(@PathVariable Long bookId) {
+        bookService.borrowBook(bookId);
+    }
+
+
 }
