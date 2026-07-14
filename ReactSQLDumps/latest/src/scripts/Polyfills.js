@@ -56,3 +56,36 @@ const gg=arr.myFind((e)=>{
     return e>24;
 })
 console.log(gg);
+
+
+Array.prototype.mySome=function(callback){
+
+    for(let i=0;i<this.length;i++){
+        const val=callback(this[i],i);
+        if(val){
+            return true;
+        }
+    }
+    return false;
+}
+
+const someres=arr.mySome((e)=>{
+    return e>20
+})
+console.log(someres)
+
+Array.prototype.myEvery=function(callback){
+    for(let i=0;i<this.length;i++){
+        const val=callback(this[i],i);
+        if(!val){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+const everyRes=arr.myEvery((e)=>{
+    return e>20;
+})
+console.log(everyRes);
