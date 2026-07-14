@@ -10,5 +10,7 @@ func hie(){
 }
 func main() {
 	hie()
+	var vishal string="vishalaa"
+	fmt.Println(vishal)
 	fmt.Println("Hello, Go training!")
 }
