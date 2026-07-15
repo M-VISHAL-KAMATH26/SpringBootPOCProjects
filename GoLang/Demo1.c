@@ -8,5 +8,18 @@ void printArray(){
 }
 int main(){
 printArray();
+int aa[]={10,20};
+int bb[]={10,20};
+printf("%d\n",aa==bb);
+
+
+int numbers[]={10,20,30,40,50};
+int *numbersCopy =numbers;
+
+numbers[0]=111;
+numbers[4]=444;
+
+printf("%d\n",numbersCopy[0]);
+
     return 0;
 }

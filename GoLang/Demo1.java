@@ -17,5 +17,16 @@ public class Demo1 {
             System.out.print(i );
         }
         System.out.println();
+
+
+
+        int aa[]=new int[]{10,20};
+        int bb[]=new int[2];bb[0]=10;bb[1]=20;
+        int cc[]=new int[]{10,20};
+
+        System.out.println(aa==bb);
+        System.out.println(aa==cc);
+        System.out.println(cc==bb);
+
     }
 }

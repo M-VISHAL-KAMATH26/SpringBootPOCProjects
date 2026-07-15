@@ -78,8 +78,15 @@ func playWithArrayAgain(){
 		fmt.Println(index,"----->",value);
 	}
 
-	for _,value:=range b{
-		fmt.Println(value)
+	for index,value:=range b{
+		fmt.Println(index,"----->",value);
+	}
+
+
+	fmt.Println("*************")
+	c:=[...]int{10,20,30,40,50,60};
+	for i,value:=range c{
+		fmt.Println(i ,"--------->",value);
 	}
 
 }
@@ -121,4 +128,17 @@ playwithCommandLineArg();
 
 	fmt.Println("-------playing with arrayy again-------")
 	playWithArrayAgain();
+
+
+	fmt.Println("------------------");
+	aa:=[2]int{10,20};
+	bb:=[...]int{10,20};
+	cc:=[2]int{10,20};
+
+	fmt.Println("aa equals bb ",aa==bb);
+	fmt.Println("aa equals cc ",aa==cc);
+	fmt.Println("cc equals bb ",cc==bb);
+
+	 
+
 }
