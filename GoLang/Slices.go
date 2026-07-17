@@ -54,10 +54,102 @@ func playWithArraysAndSlices(){
 
 
 }
+func appendInt( x []int, y int ) []int {
+	var z []int
 
+	zlen := len( x ) + 1
+	if zlen <= cap(x) {
+		z = x[ : zlen ]
+	} else {
+		zcap := zlen
+		if zcap < 2 * len( x ) {
+			zcap = 2 * len( x )
+		}
+
+		z = make( []int, zlen, zcap )
+		copy( z, x )
+	}
+
+	z[ len( x )] = y
+	return z
+}
+
+func playWithAppendInt() {
+	var x, y []int
+
+	for i := 0 ; i < 10 ; i++ {
+		y = appendInt( x, i )
+		fmt.Printf(" %d Capacity = %d \t %v \n", i, cap(y), y )
+		x = y
+	}
+}
+
+func summation(numbers ...int) int{
+	total:=0;
+	for _,value:=range numbers{
+		total=total+value;
+	}
+	return total;
+}
+
+
+func playWithVariableArguments(){
+	res1:=summation(1,2,3,4,5,6,7);
+	fmt.Println(res1);
+
+	res2:=summation(10,20,30,40,50)
+	fmt.Println(res2);
+	ListOfNumbers := []int{7, 7, 7, 7, 7}
+
+res3 := summation(ListOfNumbers...)
+fmt.Println(res3)
+}
+
+
+func appendSlice( x []int, y ...int ) [] int {
+	var z []int
+
+	zlen := len(x) + len(y)
+
+	if zlen <= cap(x) {
+		z = x[ : zlen ]
+	} else {
+		zcap := zlen
+		if zcap < 2 * len(x) {
+			zcap = 2 * len(x)
+		}
+		z = make( []int, zlen, zcap )
+		copy(z, x)
+	}
+	copy( z[ len(x) : ], y )
+	return z
+}
+
+func playWithAppendSlices() {
+	var x, y []int
+
+	for i := 0 ; i < 10 ; i++ {
+		y = appendSlice(x, i)
+		fmt.Printf( " %d Capacity=%d \t %v \n", i, cap(y), y )
+		x = y
+	}
+	fmt.Println( x )
+
+	x = appendSlice(x, 10, 20, 30)
+	fmt.Println( x )
+
+	x = appendSlice(x, 11, 22, 33, 44, 55, 66)
+	fmt.Println( x )
+
+	numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	x = appendSlice(x, numbers...)
+	fmt.Println( x )	
+}
 func main(){
-playWithSlicesLengthAndCapacity()
-
+// playWithSlicesLengthAndCapacity()
+playWithVariableArguments()
 // playWithArraysAndSlices()
+fmt.Println("---------------------------")
+playWithAppendSlices()
 
 }
