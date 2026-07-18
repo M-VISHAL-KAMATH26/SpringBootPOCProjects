@@ -1,0 +1,29 @@
+names.stream().map(String::toLowerCase).sorted().collect(Collectors.toList())
+
+nums.stream().filter(n->n<4).map(n->n*n).forEach(System.out::println)
+
+
+//longest string length in list of strings
+words.stream().max(Comparator.comparingInt(String:::length))
+
+List<Employee> sorted = employees.stream()
+    .sorted(Comparator.comparingInt(Employee::getSalary)
+                       .thenComparing(Employee::getName))
+    .collect(Collectors.toList());
+
+
+    Map<String, List<Employee>> byDept = employees.stream()
+    .collect(Collectors.groupingBy(Employee::getDepartment));
+
+
+    // count per department
+Map<String, Long> countByDept = employees.stream()
+    .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting()));
+
+// average salary per department
+Map<String, Double> avgSalaryByDept = employees.stream()
+    .collect(Collectors.groupingBy(Employee::getDepartment,
+              Collectors.averagingDouble(Employee::getSalary)));
+
+
+              
