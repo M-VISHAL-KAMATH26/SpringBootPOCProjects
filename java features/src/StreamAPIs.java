@@ -68,7 +68,56 @@ Optional<String> zooLongest=zoo.stream().max(Comparator.comparingInt(String::len
         List<Integer> nums2 = List.of(5, 3, 8, 3, 9, 5, 1, 8);
         nums2.stream().distinct().sorted(Comparator.reverseOrder()).forEach(n-> System.out.println(n));
         System.out.println("-----------------------------------");
+//find second largest in the list
+        List<Integer> nums4 = List.of(10, 25, 8, 25, 32, 17);
+// expected output: 25
+       Optional<Integer> ress= nums4.stream().sorted(Comparator.reverseOrder()).skip(1).findFirst();
 
+       ress.ifPresent(System.out::println);
+        System.out.println("-----------------------------------");
+
+//        Given a list of words, find the frequency of each word (i.e., how many times each word appears). Return a Map<String, Long>.
+//        javaList<String> words = List.of("apple", "banana", "apple", "orange", "banana", "apple");
+
+                List<String> smallList = List.of("apple", "banana", "apple", "orange", "banana", "apple");
+
+                Map<String,Long> resmap=smallList.stream().collect(Collectors.groupingBy(n->n,Collectors.counting()));
+
+        System.out.println(resmap);
+// expected output: {banana=2, orange=1, apple=3}
+
+        System.out.println("-----------------------------------");
+
+//        Given a list of integers, find the average of all numbers that are greater than 5.
+        List<Integer> nums5 = List.of(2, 8, 4, 12, 6, 3, 20);
+// expected output: 11.5   (average of 8, 12, 6, 20)
+
+OptionalDouble avg=nums5.stream().filter(n->n>5).mapToInt(n->n).average();
+avg.ifPresent(System.out::println);
+        System.out.println("-----------------------------------");
+
+
+//        Given a list of strings, convert them to a Map<String, Integer> where the key is the string itself and the value is its length. Skip any string with length less than 3.
+        List<String> languages = List.of("go", "java", "c", "python", "sql");
+// expected output: {java=4, python=6, sql=3}
+      Map<String,Integer> mapping=  languages.stream().filter(n->n.length()>=3).collect(Collectors.toMap(n->n,String::length));
+        System.out.println(mapping);
+        System.out.println("-----------------------------------");
+
+
+//        Given a list of integers, check if all numbers in the list are positive.
+                List<Integer> checkNums = List.of(4, 8, 12, 3, 9);
+
+            boolean matchingRes=checkNums.stream().allMatch(n->n>=0);
+        System.out.println(matchingRes);
+// expected output: true
+
+        List<Integer> checkNums2 = List.of(4, -8, 12, 3, 9);
+        boolean matchingRes2=checkNums2.stream().allMatch(n->n>=0);
+        System.out.println(matchingRes2);
+// expected output: false
+
+        System.out.println("-----------------------------------");
 
     }
 }
