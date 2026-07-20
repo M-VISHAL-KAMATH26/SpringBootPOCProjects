@@ -3,8 +3,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamAPIs {
-
-
     public  static boolean containsA(String s){
         if (s.toLowerCase().contains("a")){
             return true;
@@ -12,6 +10,21 @@ public class StreamAPIs {
             return false;
         }
     }
+
+//    Given a list of Integer ages, categorize people into "Minor" (under 18), "Adult" (18-59), and "Senior" (60+), and count how many fall into each category.
+    public static String categorize(int age){
+        if(age<18){
+            return "Minor";
+        }else if(age>=18 && age<=59){
+            return  "Adult";
+        }else  if(age>60){
+            return "Senior";
+        }else{
+            return "dead";
+        }
+    }
+
+
     public static void main(String[] args) {
 
 //        Given a list of strings, convert all of them to uppercase and collect the result into a List<String>.
@@ -67,7 +80,7 @@ int res=nums.stream().filter(n->n>10).mapToInt(n->n).sum();
 //given the list of strings find the largest string
 
         List<String> zoo = List.of("cat", "elephant", "dog", "hippopotamus", "ox");
-Optional<String> zooLongest=zoo.stream().max(Comparator.comparingInt(String::length));
+        Optional<String> zooLongest=zoo.stream().max(Comparator.comparingInt(String::length));
         zooLongest.ifPresent(n-> System.out.println(n));
 
         System.out.println("-----------------------------------");
@@ -105,7 +118,6 @@ OptionalDouble avg=nums5.stream().filter(n->n>5).mapToInt(n->n).average();
 avg.ifPresent(System.out::println);
         System.out.println("-----------------------------------");
 
-
 //        Given a list of strings, convert them to a Map<String, Integer> where the key is the string itself and the value is its length. Skip any string with length less than 3.
         List<String> languages = List.of("go", "java", "c", "python", "sql");
 // expected output: {java=4, python=6, sql=3}
@@ -139,7 +151,7 @@ avg.ifPresent(System.out::println);
 
         System.out.println("max = "+stats.getMax()+ " "+"sum ="+stats.getSum());
 // expected: max = 71000, sum = 271000
-        System.out.println("-----------------------------------");
+        System.out.println("--------------------------------------");
 
 //        Given a list of strings, find all strings that contain the letter 'a' (case-insensitive), convert them to uppercase, and sort them alphabetically.
                 List<String> wordss = List.of("banana", "Cherry", "Apple", "kiwi", "Mango");
@@ -147,23 +159,29 @@ avg.ifPresent(System.out::println);
 
 List<String> operatedString=wordss.stream().filter(n->containsA(n)).map(String::toUpperCase).sorted().collect(Collectors.toList());
         System.out.println(operatedString);
-
-
         //above stream can alos be written using the method reference
 //        List<String> operatedString = wordss.stream()
 //                .filter(Test::containsA)     // method reference — no lambda wrapper needed
 //                .map(String::toUpperCase)
 //                .sorted()
 //                .collect(Collectors.toList());
-        System.out.println("-----------------------------------");
+        System.out.println("--------------------------------------");
+
 //        Given a list of Integer ages, categorize people into "Minor" (under 18), "Adult" (18-59), and "Senior" (60+), and count how many fall into each category.
                 List<Integer> ages = List.of(15, 25, 65, 17, 45, 70, 8, 30);
 // expected output: {Minor=3, Adult=3, Senior=2}
 
-        System.out.println("-----------------------------------");
+       Map<String,Long> mappingX= ages.stream().collect(Collectors.groupingBy(n->categorize(n),Collectors.counting()));
+        System.out.println(mappingX);
+        System.out.println("--------------------------------------");
 
 
-        System.out.println("-----------------------------------");
+
+        System.out.println("--------------------------------------");
+
+
+
+        System.out.println("--------------------------------------");
 
 
 
