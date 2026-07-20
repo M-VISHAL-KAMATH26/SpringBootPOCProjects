@@ -4,7 +4,16 @@ import java.util.stream.Stream;
 
 public class StreamAPIs {
 
+
+    public  static boolean containsA(String s){
+        if (s.toLowerCase().contains("a")){
+            return true;
+        }else{
+            return false;
+        }
+    }
     public static void main(String[] args) {
+
 //        Given a list of strings, convert all of them to uppercase and collect the result into a List<String>.
         System.out.println("-----------------------------------");
 
@@ -118,6 +127,46 @@ avg.ifPresent(System.out::println);
 // expected output: false
 
         System.out.println("-----------------------------------");
+//        Given a list of strings representing numbers, convert them to integers and find the sum.
+                List<String> numStrings = List.of("10", "25", "30", "15");
+               int summ= numStrings.stream().map(n->Integer.parseInt(n)).mapToInt(n->n).sum();
+
+        System.out.println(summ);
+        System.out.println("-----------------------------------");
+//        Given a list of employee salaries, find the highest salary and the total sum of all salaries — but do it in a single pass (one stream operation, not two separate stream calls).
+                List<Integer> salaries = List.of(45000, 62000, 38000, 71000, 55000);
+                IntSummaryStatistics stats=salaries.stream().collect(Collectors.summarizingInt(n->n));
+
+        System.out.println("max = "+stats.getMax()+ " "+"sum ="+stats.getSum());
+// expected: max = 71000, sum = 271000
+        System.out.println("-----------------------------------");
+
+//        Given a list of strings, find all strings that contain the letter 'a' (case-insensitive), convert them to uppercase, and sort them alphabetically.
+                List<String> wordss = List.of("banana", "Cherry", "Apple", "kiwi", "Mango");
+// expected output: [APPLE, BANANA, MANGO]
+
+List<String> operatedString=wordss.stream().filter(n->containsA(n)).map(String::toUpperCase).sorted().collect(Collectors.toList());
+        System.out.println(operatedString);
+
+
+        //above stream can alos be written using the method reference
+//        List<String> operatedString = wordss.stream()
+//                .filter(Test::containsA)     // method reference — no lambda wrapper needed
+//                .map(String::toUpperCase)
+//                .sorted()
+//                .collect(Collectors.toList());
+        System.out.println("-----------------------------------");
+//        Given a list of Integer ages, categorize people into "Minor" (under 18), "Adult" (18-59), and "Senior" (60+), and count how many fall into each category.
+                List<Integer> ages = List.of(15, 25, 65, 17, 45, 70, 8, 30);
+// expected output: {Minor=3, Adult=3, Senior=2}
+
+        System.out.println("-----------------------------------");
+
+
+        System.out.println("-----------------------------------");
+
+
+
 
     }
 }
